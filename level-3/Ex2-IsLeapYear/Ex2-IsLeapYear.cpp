@@ -12,9 +12,9 @@ int main()
     short Year = MyInputLib::ReadPositiveNumber("Enter a year : ");
     
     if (IsLeapYear(Year))
-        printf("\n%d is leap year", Year);
+        printf("\nYes, year %d is leap year", Year);
     else
-        printf("\n%d is not leap year", Year);
+        printf("\nNo, year %d is not leap year", Year);
 
     return 0;
 }
