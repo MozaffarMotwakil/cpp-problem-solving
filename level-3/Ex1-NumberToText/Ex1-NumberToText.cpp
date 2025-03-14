@@ -3,45 +3,75 @@
 
 using namespace std;
 
-string DigitToWord(short Digit) {
-	string DigitsName[]{ "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
-	return DigitsName[Digit - 1];
-}
-
-string DigitToTensWord(short Digit) {
-	string TensName[]{ "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
-	return TensName[Digit - 2];
-}
-
-string GetScaleName(short DigitPosition) {
-	return DigitPosition == 4 ? "Thousents" : DigitPosition == 7 ? "Millions" : "Billions";
-}
-
-string NumberToText(int Number, short DigitPosition = 1) {
+string NumberToText(int Number) {
 	string Text = "";
 
-	if (Number != 0)
+	if (Number == 0)
 	{
-		short Mod = Number % 10;
-		Number /= 10;
-
-		Text += NumberToText(Number, DigitPosition + 1) + " ";
-
-		if (DigitPosition % 3 == 1 && DigitPosition != 1)
-			Text += DigitToWord(Mod) + " " + GetScaleName(DigitPosition);
-		else if (DigitPosition % 3 == 0)
-			Text += DigitToWord(Mod) + " " + "Handerits";
-		else if (DigitPosition % 3 == 2)
-			Text += DigitToTensWord(Mod);
-		else
-			Text += DigitToWord(Mod);
-
+		return Text;
 	}
 
-	return Text;
+	if (Number >= 1 && Number <= 19)
+	{
+		string NumbersName[]{
+			"", "One", "Two", "Three", "Four", "Five", "Six", "Seven",
+			"Eight", "Nine" ,"Ten" , "Eleven", "Twelve", "Fourteen",
+			"Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+		};
+
+		return NumbersName[Number];
+	}
+
+	if (Number >= 20 && Number <= 99)
+	{
+		string TensName[]{ "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+		return TensName[Number / 10] + " " + NumberToText(Number % 10);
+	}
+
+	if (Number >= 100 && Number <= 199)
+	{
+		return "One Hundreds " + NumberToText(Number % 100);
+	}
+
+	if (Number >= 200 && Number <= 999)
+	{
+		return NumberToText(Number / 100) + " Hundreds " + NumberToText(Number % 100);
+	}
+
+
+	if (Number >= 1000 && Number <= 1999)
+	{
+		return "One Thousent " + NumberToText(Number % 1000);
+	}
+
+	if (Number >= 2000 && Number <= 999999)
+	{
+		return NumberToText(Number / 1000) + " Thousents " + NumberToText(Number % 1000);
+	}
+
+	if (Number >= 1000000 && Number <= 1999999)
+	{
+		return "One Million " + NumberToText(Number % 1000000);
+	}
+
+	if (Number >= 2000000 && Number <= 999999999)
+	{
+		return NumberToText(Number / 1000000) + " Millions " + NumberToText(Number % 1000000);
+	}
+
+	if (Number >= 1000000000 && Number <= 1999999999)
+	{
+		return "One Billion " + NumberToText(Number % 1000000000);
+	}
+	else
+	{
+		return NumberToText(Number / 1000000000) + " Billions " + NumberToText(Number % 1000000000);
+	}
+
 }
 
-int main() {
+int mani() {
+	
 	int Number = MyInputLib::ReadPositiveNumber("Enter a number : ");
 
 	cout << NumberToText(Number) << endl;
