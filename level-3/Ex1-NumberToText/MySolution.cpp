@@ -24,7 +24,7 @@ string NumberToText(int Number, short DigitPosition = 1) {
 	{
 		short Mod = Number % 10;
 		Number /= 10;
-
+		
 		Text += NumberToText(Number, DigitPosition + 1) + " ";
 
 		if (DigitPosition % 3 == 1 && DigitPosition != 1)
