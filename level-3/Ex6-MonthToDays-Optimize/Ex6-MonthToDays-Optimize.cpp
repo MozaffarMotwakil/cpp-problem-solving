@@ -11,8 +11,8 @@ short MonthToDays(short Year, short Month) {
     if (Month < 1 || Month > 12)
         return 0;
 
-    return (Month == 4 || Month == 6 || Month == 9 || Month == 11) ? 30
-           : Month == 2 ? (IsLeapYear(Year) ? 29 : 28) : 31;
+    int MonthDaysCount[12]{ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    return (Month == 2 ? (IsLeapYear(Year) ? 29 : 28) : MonthDaysCount[Month - 1]);
 }
 
 int main()
