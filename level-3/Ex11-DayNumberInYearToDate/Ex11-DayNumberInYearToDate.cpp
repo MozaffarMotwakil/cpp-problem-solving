@@ -5,6 +5,12 @@
 
 using namespace std;
 
+struct stDate {
+    short Year;
+    short Month;
+    short Day;
+};
+
 bool IsLeapYear(short Year) {
     return (Year % 400 == 0 || (Year % 4 == 0 && Year % 100 != 0));
 }
@@ -25,17 +31,29 @@ short GetTotalDaysFromBeginningYear(short Year, short Month, short Day) {
     return TotalDays += Day;
 }
 
-string DayNumberInYearToDate(short Year, short DayNumberInYear) {
-    short MonthDays = 0;
-    short Month = 1;
+stDate ConvertDayOrderToDate(short Year, short DayNumberInYear) {
+    short RemaindingDays = DayNumberInYear;
+    stDate Date;
+    Date.Year = Year;
+    Date.Month = 1;
 
-    while (DayNumberInYear > (MonthDays = GetMonthDays(Year, Month)))
+    while (true)
     {
-        DayNumberInYear -= MonthDays;
-        Month++;
-    }
+        short MonthDays = GetMonthDays(Year, Date.Month);
 
-    return to_string(DayNumberInYear) + '/' + to_string(Month) + '/' + to_string(Year);
+        if (RemaindingDays > MonthDays)
+        {
+            RemaindingDays -= MonthDays;
+            Date.Month++;
+        }
+        else
+        {
+            Date.Day = RemaindingDays;
+            break;
+        }
+    }
+    
+    return Date;
 }
 
 int main()
@@ -44,10 +62,11 @@ int main()
     short Month = MyInputLib::ReadPositiveNumber("\nEnter a month : ");
     short Day = MyInputLib::ReadPositiveNumber("\nEnter a day : ");
 
-    short DayNumberInYear = GetTotalDaysFromBeginningYear(Year, Month, Day);
+    short DayOrder = GetTotalDaysFromBeginningYear(Year, Month, Day);
+    cout << "\nThe day number from beginning of year is : " << DayOrder << endl;
 
-    cout << "\nThe day number from beginning of year is : " << DayNumberInYear << endl;
-    cout << "\nDate for [" << DayNumberInYear << "] is : " << DayNumberInYearToDate(Year, DayNumberInYear) << endl;
+    stDate Date = ConvertDayOrderToDate(Year, DayOrder);
+    cout << "\nDate for [" << DayOrder << "] is : " << Date.Day << '/' << Date.Month << '/' << Date.Year << endl;
 
     return 0;
 }
