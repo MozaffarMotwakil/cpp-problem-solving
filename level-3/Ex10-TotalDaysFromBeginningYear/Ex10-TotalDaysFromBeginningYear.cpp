@@ -35,15 +35,12 @@ short GetMonthDays(short Year, short Month) {
 short GetTotalDaysFromBeginningYear(short Year, short Month, short Day) {
     short TotalDays = 0;
     
-    for (short i = 1; i <= 12; i++)
+    for (short i = 1; i <= Month - 1; i++)
     {
-        if (Month == i)
-        {
-            return TotalDays += Day;
-        }
-
         TotalDays += GetMonthDays(Year, i);
     }
+
+    return TotalDays += Day;
 }
 
 int main()
