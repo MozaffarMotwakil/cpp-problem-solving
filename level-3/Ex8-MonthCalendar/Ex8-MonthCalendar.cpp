@@ -19,8 +19,8 @@ string GetShortDayName(short Day) {
 }
 
 string GetShortMonthName(short Month) {
-    string MonthsName[12]{ "Jun", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Agu", "Sep", "Oct", "Nov", "Des" };
-    return MonthsName[Month];
+    string MonthsName[12]{ "Jun", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Agu", "Sep", "Oct", "Nov", "Dec" };
+    return MonthsName[Month - 1];
 }
 
 bool IsLeapYear(short Year) {
@@ -33,50 +33,32 @@ short GetMonthDays(short Year, short Month) {
 }
 
 void DisplayMonthCalendar(short Year, short Month) {
-    cout << "\n\n__________________" << GetShortMonthName(Month) << "__________________\n\n";
-    cout << "Sun   Mon   Tue   Wed   Thu   Fri   Sat" << endl;
+    short MonthDayCount = GetMonthDays(Year, Month);
+    short FirstDayOrderInWeek = ConvertDateToWeakDayNumber(Year, Month, 1);
 
-    switch (ConvertDateToWeakDayNumber(Year, Month, 1))
+    printf("\n  _______________%s_______________\n\n", GetShortMonthName(Month).c_str());
+    cout << "  Sun  Mon  Tue  Wed  Thu  Fri  Sat" << endl;
+
+    short i;
+
+    for (i = 0; i < FirstDayOrderInWeek; i++)
     {
-    case 0:
-        cout << setw(3) << 1;
-        break;
-    case 1:
-        cout << setw(9) << 1;
-        break;
-    case 2:
-        cout << setw(15) << 1;
-        break;
-    case 3:
-        cout << setw(21) << 1;
-        break;
-    case 4:
-        cout << setw(27) << 1;
-        break;
-    case 5:
-        cout << setw(33) << 1;
-        break;
-    case 6:
-        cout << setw(39) << 1 << endl;
-        break;
+        cout << "     ";
     }
-    
-    for (short i = 2; i <= GetMonthDays(Year, Month); i++)
+
+    for (short Day = 1; Day <= MonthDayCount; Day++)
     {
-        switch (ConvertDateToWeakDayNumber(Year, Month, i))
+        printf("%5d", Day);
+
+        if (++i == 7)
         {
-        case 0:
-            cout << setw(3) << i;
-            break;
-        case 6:
-            cout << setw(6) << i << endl;
-            break;
-        default :
-            cout << setw(6) << i; 
+            i = 0;
+            cout << endl;
         }
-    }
 
-    cout << "\n_______________________________________\n";
+    }
+   
+    cout << "\n  _________________________________\n";
 }
 
 int main()
