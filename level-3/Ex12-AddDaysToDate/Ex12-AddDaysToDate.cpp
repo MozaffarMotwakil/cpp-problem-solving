@@ -20,44 +20,66 @@ short GetMonthDays(short Year, short Month) {
     return (Month == 2 ? (IsLeapYear(Year) ? 29 : 28) : MonthsDay[Month - 1]);
 }
 
-stDate AddDaysToDay(stDate Date, short DaysToAdd) {
-    for (DaysToAdd; DaysToAdd > 0; DaysToAdd--)
+short NumberOfDaysFromBeginingYear(stDate Date) {
+    short NumberOfDay = 0;
+
+    for (short Month = 1; Month <= Date.Month - 1; Month++)
     {
-        if (Date.Day < GetMonthDays(Date.Year, Date.Month))
+        NumberOfDay += GetMonthDays(Date.Year, Month);
+    }
+    
+    return NumberOfDay += Date.Day;
+}
+
+
+stDate AddDaysToDate(stDate Date, short DaysToAdd) {
+    short RemainingDays = DaysToAdd + NumberOfDaysFromBeginingYear(Date);
+    Date.Month = 1;
+
+    while (true)
+    {
+        short MonthDays = GetMonthDays(Date.Year, Date.Month);
+
+        if (RemainingDays > MonthDays)
         {
-            Date.Day++;
-        }
-        else
-        {
-            if (Date.Month < 12)
-            {
-                Date.Month++;
-                Date.Day = 1;
-            }
-            else
+            RemainingDays -= MonthDays;
+            Date.Month++;
+
+            if (Date.Month > 12)
             {
                 Date.Year++;
                 Date.Month = 1;
-                Date.Day = 1;
             }
+
+        }
+        else
+        {
+            Date.Day = RemainingDays;
+            break;
         }
     }
-
+    
     return Date;
 }
 
-int main()
-{
+stDate ReadDate() {
     stDate Date;
 
     Date.Year = MyInputLib::ReadPositiveNumber("Enter a year : ");
     Date.Month = MyInputLib::ReadPositiveNumber("\nEnter a month : ");
     Date.Day = MyInputLib::ReadPositiveNumber("\nEnter a day : ");
 
+    return Date;
+}
+
+int main()
+{
+    stDate Date = ReadDate();
+    
     short NumberOfDaysToAdd = MyInputLib::ReadPositiveNumber("\nHow many days you want to add ? ");
 
-    stDate NewDate = AddDaysToDay(Date, NumberOfDaysToAdd);
-    cout << "\nDate after adding [" << NumberOfDaysToAdd << "] is : " << NewDate.Day << '/' << NewDate.Month << '/' << NewDate.Year << endl;
+    Date = AddDaysToDate(Date, NumberOfDaysToAdd);
+    cout << "\nDate after adding [" << NumberOfDaysToAdd << "] is : " << Date.Day << '/' << Date.Month << '/' << Date.Year << endl;
 
     return 0;
 }
