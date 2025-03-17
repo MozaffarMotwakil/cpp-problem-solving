@@ -29,20 +29,55 @@ short GetMonthDays(short Year, short Month) {
     return (Month == 2 ? (IsLeapYear(Year) ? 29 : 28) : MonthsDay[Month - 1]);
 }
 
-short NumberOfDaysFromBeginingYear(stDate Date) {
-    short TotalOfDays = 0;
+bool IsDate1BeforeDate2(stDate Date1, stDate Date2) {
+    if (Date1.Year != Date2.Year)
+        return Date1.Year < Date2.Year;
 
-    for (short Month = 1; Month <= Date.Month - 1; Month++)
+    if (Date1.Month != Date2.Month)
+        return Date1.Month < Date2.Month;
+
+    return Date1.Day < Date2.Day;
+}
+
+bool IsLastDayInMonth(stDate Date) {
+    return Date.Day == GetMonthDays(Date.Year, Date.Month);
+}
+
+bool IsLastMonthInYear(stDate Date) {
+    return Date.Month == 12;
+}
+
+void IncreaseDateByOneDay(stDate& Date) {
+    if (IsLastDayInMonth(Date))
     {
-        TotalOfDays += GetMonthDays(Date.Year, Month);
+        if (IsLastMonthInYear(Date))
+        {
+            Date.Year++;
+            Date.Month = 1;
+            Date.Day = 1;
+        }
+        else
+        {
+            Date.Month++;
+            Date.Day = 1;
+        }
     }
-
-    return TotalOfDays += Date.Day;
+    else
+    {
+        Date.Day++;
+    }
 }
 
 short DiffirentBetweenTwoDates(stDate Date1, stDate Date2, bool InclodingEndDay = false) {
-    short TotalOfDiffirentDays = NumberOfDaysFromBeginingYear(Date2) - NumberOfDaysFromBeginingYear(Date1);
-    return InclodingEndDay ? TotalOfDiffirentDays + 1 : TotalOfDiffirentDays;
+    short Days = 0;
+
+    while (IsDate1BeforeDate2(Date1, Date2))
+    {
+        IncreaseDateByOneDay(Date1);
+        Days++;
+    }
+
+    return Days;
 }
 
 short BirthdayToDays(stDate BirthdayDate) {
