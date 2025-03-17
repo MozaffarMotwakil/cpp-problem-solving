@@ -1,8 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "MyValidationLib.h"
 #include <string>
+#include "MyValidationLib.h"
+#include "..\MyLibrary\StructGroup.cpp"
 
 using namespace std;
 
@@ -60,24 +61,8 @@ namespace MyInputLib {
 		return Number;
 	}
 
-	int ReadNegativeNumber(string Message) {
-		int Number = -1;
-
-		do
-		{
-			cout << Message;
-			Number = ReadNumber(Message);
-
-			if (!MyValidationLib::IsNegativeNumber(Number))
-				cout << "Wrong number, please enter a negative number." << endl;
-
-		} while (!MyValidationLib::IsNegativeNumber(Number));
-
-		return Number;
-	}
-
-	int ReadPositiveNumberInRange(int From, int To, string Message) {
-		int PositiveNumber = 0;
+	auto ReadPositiveNumberInRange(int From, int To, string Message) {
+		auto PositiveNumber = 0;
 
 		do
 		{
@@ -91,19 +76,14 @@ namespace MyInputLib {
 		return PositiveNumber;
 	}
 
-	int ReadNegativeNumberInRange(int From, int To, string Message) {
-		int NegativeNumber = 0;
+	stDate ReadDate() {
+		stDate Date;
 
-		do
-		{
-			NegativeNumber = ReadNegativeNumber(Message);
+		Date.Year = MyInputLib::ReadPositiveNumber("Enter a year : ");
+		Date.Month = MyInputLib::ReadPositiveNumber("\nEnter a month : ");
+		Date.Day = MyInputLib::ReadPositiveNumber("\nEnter a day : ");
 
-			if (!MyValidationLib::IsNumberInRange(NegativeNumber, From, To))
-				cout << "Wrong number, please enter a number from " << From << " to " << To << "." << endl;
-
-		} while (!MyValidationLib::IsNumberInRange(NegativeNumber, From, To));
-
-		return NegativeNumber;
+		return Date;
 	}
 
 }
