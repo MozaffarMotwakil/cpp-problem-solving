@@ -35,16 +35,19 @@ bool IsLastMonthInYear(stDate Date) {
 }
 
 void IncreaseDateByOneDay(stDate& Date) {
-    if (IsLastMonthInYear(Date) && IsLastDayInMonth(Date))
+    if (IsLastDayInMonth(Date))
     {
-        Date.Year++;
-        Date.Month = 1;
-        Date.Day = 1;
-    }
-    else if (IsLastDayInMonth(Date))
-    {
-        Date.Month++;
-        Date.Day = 1;
+        if (IsLastMonthInYear(Date))
+        {
+            Date.Year++;
+            Date.Month = 1;
+            Date.Day = 1;
+        }
+        else 
+        {
+            Date.Month++;
+            Date.Day = 1;
+        }
     }
     else
     {
