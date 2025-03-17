@@ -37,6 +37,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex16-IncreaseDateByOneDay",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex17-DiffirenceBetweenDate1AndDate2", "Ex17-DiffirenceBetweenDate1AndDate2\Ex17-DiffirenceBetweenDate1AndDate2.vcxproj", "{1F5A7F9D-37D2-43EC-8981-33918A4D3C40}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex18-YourBirthdayToDays", "Ex18-YourBirthdayToDays\Ex18-YourBirthdayToDays.vcxproj", "{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -181,6 +183,14 @@ Global
 		{1F5A7F9D-37D2-43EC-8981-33918A4D3C40}.Release|x64.Build.0 = Release|x64
 		{1F5A7F9D-37D2-43EC-8981-33918A4D3C40}.Release|x86.ActiveCfg = Release|Win32
 		{1F5A7F9D-37D2-43EC-8981-33918A4D3C40}.Release|x86.Build.0 = Release|Win32
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Debug|x64.ActiveCfg = Debug|x64
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Debug|x64.Build.0 = Debug|x64
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Debug|x86.ActiveCfg = Debug|Win32
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Debug|x86.Build.0 = Debug|Win32
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Release|x64.ActiveCfg = Release|x64
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Release|x64.Build.0 = Release|x64
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Release|x86.ActiveCfg = Release|Win32
+		{77101D5E-1485-45BA-B0CA-3CEFA3DBE874}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
