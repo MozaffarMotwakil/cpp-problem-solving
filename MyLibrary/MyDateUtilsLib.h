@@ -306,10 +306,6 @@ namespace MyDateUtilsLib {
 		return Date;
 	}
 
-	string DateToString(stDate Date) {
-		return to_string(Date.Day) + '/' + to_string(Date.Month) + '/' + to_string(Date.Year);
-	}
-
 	stDate GetLocalDate() {
 		time_t Time = time(0);
 		tm* LocalTime = localtime(&Time);
@@ -340,14 +336,19 @@ namespace MyDateUtilsLib {
         return WeekDays[Day];
     }
 
-	string GetShortDayName(short Day) {
+	string GetShortDayName(short DayIndex) {
 		string WeekDays[7]{ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
-		return WeekDays[Day];
+		return WeekDays[DayIndex];
 	}
 
 	string GetShortMonthName(short Month) {
 		string MonthsName[12]{ "Jun", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Agu", "Sep", "Oct", "Nov", "Dec" };
 		return MonthsName[Month - 1];
+	}
+
+	string DateToString(stDate Date, bool WithShortDayName = false) {
+		string DayShortName = (WithShortDayName ? (GetShortDayName(WeekDayOrder(Date)) + " , ") : "");
+		return DayShortName + to_string(Date.Day) + '/' + to_string(Date.Month) + '/' + to_string(Date.Year);
 	}
 
 	bool IsDate1BeforeDate2(stDate Date1, stDate Date2) {
@@ -367,7 +368,7 @@ namespace MyDateUtilsLib {
 		{
 			while (IsDate1BeforeDate2(Date1, Date2))
 			{
-				IncreaseDateByOneDay(Date1);
+				Date1 = IncreaseDateByOneDay(Date1);
 				Days++;
 			}
 
@@ -377,7 +378,7 @@ namespace MyDateUtilsLib {
 		{
 			while (IsDate1BeforeDate2(Date2, Date1))
 			{
-				IncreaseDateByOneDay(Date2);
+				Date2 = IncreaseDateByOneDay(Date2);
 				Days++;
 			}
 
@@ -450,6 +451,22 @@ namespace MyDateUtilsLib {
 
 	short DaysUntilTheEndOfYear(stDate Date) {
 		return MyDateUtilsLib::GetYearDays(Date.Year) - MyDateUtilsLib::NumberOfDaysFromBeginingYear(Date);
+	}
+
+	short ActualVacationDays(stDate VacationStart, stDate VacationEnd) {
+		short TotalVacationDays = 0;
+
+		while (IsDate1BeforeDate2(VacationStart, VacationEnd))
+		{
+			if (IsBusinessDay(VacationStart))
+			{
+				TotalVacationDays++;
+			}
+
+			VacationStart = MyDateUtilsLib::IncreaseDateByOneDay(VacationStart);
+		}
+
+		return TotalVacationDays;
 	}
 
 }
