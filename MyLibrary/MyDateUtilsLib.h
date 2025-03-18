@@ -8,6 +8,8 @@
 using namespace std;
 
 namespace MyDateUtilsLib {
+
+	enum enDateCompare { After = 1, Equal = 0, Before = -1 };
 	
 	bool IsLeapYear(short Year) {
 		return (Year % 400 == 0 || (Year % 4 == 0 && Year % 100 != 0));
@@ -475,6 +477,16 @@ namespace MyDateUtilsLib {
 		}
 
 		return TotalVacationDays;
+	}
+
+	short CompareBetweenTwoDates(stDate Date1, stDate Date2) {
+		if (IsDate1BeforeDate2(Date1, Date2))
+			return enDateCompare::Before;
+
+		if (IsDate1EqualDate2(Date1, Date2))
+			return enDateCompare::Equal;
+
+		return enDateCompare::After;
 	}
 
 }
