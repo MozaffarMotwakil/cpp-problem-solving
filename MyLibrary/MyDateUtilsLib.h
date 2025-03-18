@@ -18,6 +18,14 @@ namespace MyDateUtilsLib {
 		return (Month == 2 ? (IsLeapYear(Year) ? 29 : 28) : MonthsDay[Month - 1]);
 	}
 
+	short GetMonthDays(stDate Date) {
+		return GetMonthDays(Date.Year, Date.Month);
+	}
+
+	short GetYearDays(short Year) {
+		return IsLeapYear(Year) ? 366 : 365;
+	}
+
 	bool IsLastDayInMonth(stDate Date) {
 		return Date.Day == GetMonthDays(Date.Year, Date.Month);
 	}
@@ -314,7 +322,7 @@ namespace MyDateUtilsLib {
 		return LocalDate;
 	}
 
-    short ConvertDateToWeakDayNumber(short Year, short Month, short Day) {
+    short WeekDayOrder(short Year, short Month, short Day) {
         short a = (14 - Month) / 12;
         short y = Year - a;
         short m = Month + (12 * a) - 2;
