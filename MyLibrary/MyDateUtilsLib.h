@@ -170,6 +170,134 @@ namespace MyDateUtilsLib {
 		return Date;
 	}
 
+	stDate DecreaseDateByOneDay(stDate Date) {
+		if (Date.Day == 1)
+		{
+			if (Date.Month == 1)
+			{
+				Date.Year--;
+				Date.Month = 12;
+				Date.Day = 31;
+			}
+			else
+			{
+				Date.Month--;
+				Date.Day = GetMonthDays(Date.Year, Date.Month);
+			}
+		}
+		else
+		{
+			Date.Day--;
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByXDays(stDate Date, int Days) {
+		for (int i = 1; i <= Days; i++)
+		{
+			Date = DecreaseDateByOneDay(Date);
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByOneWeek(stDate Date) {
+		for (int i = 1; i <= 7; i++)
+		{
+			Date = DecreaseDateByOneDay(Date);
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByXWeeks(stDate Date, int Weeks) {
+		for (int i = 1; i <= Weeks; i++)
+		{
+			Date = DecreaseDateByOneWeek(Date);
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByOneMonth(stDate Date) {
+		if (Date.Month == 1)
+		{
+			Date.Year--;
+			Date.Month = 12;
+		}
+		else
+		{
+			Date.Month--;
+		}
+
+		short MonthDays = GetMonthDays(Date.Year, Date.Month);
+
+		if (Date.Day > MonthDays)
+		{
+			Date.Day = MonthDays;
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByXMonths(stDate Date, int Months) {
+		for (short i = 1; i <= Months; i++)
+		{
+			Date = MyDateUtilsLib::DecreaseDateByOneMonth(Date);
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByOneYear(stDate Date) {
+		Date.Year--;
+		return Date;
+	}
+
+	stDate DecreaseDateByXYears(stDate Date, int Years) {
+		for (int i = 1; i <= Years; i++)
+		{
+			Date = MyDateUtilsLib::DecreaseDateByOneYear(Date);
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByXYearsFaster(stDate Date, int Years) {
+		Date.Year -= Years;
+		return Date;
+	}
+
+	stDate DecreaseDateByOneDecade(stDate Date) {
+		Date.Year -= 10;
+		return Date;
+	}
+
+	stDate DecreaseDateByXDecades(stDate Date, int Decodes) {
+		for (int i = 1; i <= Decodes; i++)
+		{
+			Date = MyDateUtilsLib::DecreaseDateByOneDecade(Date);
+		}
+
+		return Date;
+	}
+
+	stDate DecreaseDateByXDecadesFaster(stDate Date, int Decodes) {
+		Date.Year -= 10 * Decodes;
+		return Date;
+	}
+
+	stDate DecreaseDateByOneCentury(stDate Date) {
+		Date.Year -= 100;
+		return Date;
+	}
+
+	stDate DecreaseDateByOneMellennium(stDate Date) {
+		Date.Year -= 1000;
+		return Date;
+	}
+
 	string DateToString(stDate Date) {
 		return to_string(Date.Day) + '/' + to_string(Date.Month) + '/' + to_string(Date.Year);
 	}
