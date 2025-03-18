@@ -331,6 +331,10 @@ namespace MyDateUtilsLib {
         return (Day + y + (y / 4) - (y / 100) + (y / 400) + ((31 * m) / 12)) % 7;
     }
 
+	short WeekDayOrder(stDate Date) {
+		return WeekDayOrder(Date.Year, Date.Month, Date.Day);
+	}
+
     string GetDayName(short Day) {
         string WeekDays[7]{ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
         return WeekDays[Day];
@@ -421,6 +425,31 @@ namespace MyDateUtilsLib {
 		}
 
 		return Date;
+	}
+
+	bool IsEndOfWeek(stDate Date) {
+		return MyDateUtilsLib::WeekDayOrder(Date) == 6;
+	}
+
+	bool IsWeekEnd(stDate Date) {
+		short DayOrder = MyDateUtilsLib::WeekDayOrder(Date);
+		return (DayOrder == 5 || DayOrder == 6);
+	}
+
+	bool IsBusinessDay(stDate Date) {
+		return !MyDateUtilsLib::IsWeekEnd(Date);
+	}
+
+	short DaysUntilTheEndOfWeek(stDate Date) {
+		return 6 - MyDateUtilsLib::WeekDayOrder(Date);
+	}
+
+	short DaysUntilTheEndOfMonth(stDate Date) {
+		return MyDateUtilsLib::GetMonthDays(Date.Year, Date.Month) - Date.Day;
+	}
+
+	short DaysUntilTheEndOfYear(stDate Date) {
+		return MyDateUtilsLib::GetYearDays(Date.Year) - MyDateUtilsLib::NumberOfDaysFromBeginingYear(Date);
 	}
 
 }
