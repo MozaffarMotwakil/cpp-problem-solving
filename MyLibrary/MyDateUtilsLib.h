@@ -174,36 +174,6 @@ namespace MyDateUtilsLib {
 		return to_string(Date.Day) + '/' + to_string(Date.Month) + '/' + to_string(Date.Year);
 	}
 
-	stDate AddDaysToDate(stDate Date, short DaysToAdd) {
-		short RemainingDays = DaysToAdd + NumberOfDaysFromBeginingYear(Date);
-		Date.Month = 1;
-
-		while (true)
-		{
-			short MonthDays = GetMonthDays(Date.Year, Date.Month);
-
-			if (RemainingDays > MonthDays)
-			{
-				RemainingDays -= MonthDays;
-				Date.Month++;
-
-				if (Date.Month > 12)
-				{
-					Date.Year++;
-					Date.Month = 1;
-				}
-
-			}
-			else
-			{
-				Date.Day = RemainingDays;
-				break;
-			}
-		}
-
-		return Date;
-	}
-
 	stDate GetLocalDate() {
 		time_t Time = time(0);
 		tm* LocalTime = localtime(&Time);
@@ -285,6 +255,36 @@ namespace MyDateUtilsLib {
 		}
 
 		return NumberOfDays += Date.Day;
+	}
+
+	stDate AddDaysToDate(stDate Date, short DaysToAdd) {
+		short RemainingDays = DaysToAdd + NumberOfDaysFromBeginingYear(Date);
+		Date.Month = 1;
+
+		while (true)
+		{
+			short MonthDays = GetMonthDays(Date.Year, Date.Month);
+
+			if (RemainingDays > MonthDays)
+			{
+				RemainingDays -= MonthDays;
+				Date.Month++;
+
+				if (Date.Month > 12)
+				{
+					Date.Year++;
+					Date.Month = 1;
+				}
+
+			}
+			else
+			{
+				Date.Day = RemainingDays;
+				break;
+			}
+		}
+
+		return Date;
 	}
 
 }
