@@ -49,6 +49,161 @@ namespace MyDateUtilsLib {
 		return Date;
 	}
 
+	stDate IncreaseDateByXDays(stDate Date, int DaysToAdd) {
+		for (int i = 1; i <= DaysToAdd; i++)
+		{
+			Date = IncreaseDateByOneDay(Date);
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByOneWeek(stDate Date) {
+		short MonthDays = GetMonthDays(Date.Year, Date.Month);
+
+		if (Date.Day <= MonthDays - 7)
+		{
+			Date.Day += 7;
+		}
+		else
+		{
+			if (IsLastMonthInYear(Date))
+			{
+				Date.Year++;
+				Date.Month = 1;
+				Date.Day = (7 - (MonthDays - Date.Day));
+			}
+			else
+			{
+				Date.Month++;
+				Date.Day = (7 - (MonthDays - Date.Day));
+			}
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByXWeeks(stDate Date, int WeeksToAdd) {
+		for (int i = 1; i <= WeeksToAdd; i++)
+		{
+			Date = MyDateUtilsLib::IncreaseDateByOneWeek(Date);
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByOneMonth(stDate Date) {
+		if (IsLastMonthInYear(Date))
+		{
+			Date.Year++;
+			Date.Month = 1;
+		}
+		else
+		{
+			Date.Month++;
+		}
+
+		short MonthDays = GetMonthDays(Date.Year, Date.Month);
+
+		if (Date.Day > MonthDays)
+		{
+			Date.Day = MonthDays;
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByXMonths(stDate Date, int MonthsToAdd) {
+		for (short i = 1; i <= MonthsToAdd; i++)
+		{
+			Date = MyDateUtilsLib::IncreaseDateByOneMonth(Date);
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByOneYear(stDate Date) {
+		Date.Year++;
+		return Date;
+	}
+
+	stDate IncreaseDateByXYears(stDate Date, int YearsToAdd) {
+		for (int i = 1; i <= YearsToAdd; i++)
+		{
+			Date = MyDateUtilsLib::IncreaseDateByOneYear(Date);
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByXYearsFaster(stDate Date, int YearsToAdd) {
+		Date.Year += YearsToAdd;
+		return Date;
+	}
+
+	stDate IncreaseDateByOneDecade(stDate Date) {
+		Date.Year += 10;
+		return Date;
+	}
+
+	stDate IncreaseDateByXDecades(stDate Date, int DecodesToAdd) {
+		for (int i = 1; i <= DecodesToAdd; i++)
+		{
+			Date = MyDateUtilsLib::IncreaseDateByOneDecade(Date);
+		}
+
+		return Date;
+	}
+
+	stDate IncreaseDateByXDecadesFaster(stDate Date, int DecodesToAdd) {
+		Date.Year += 10 * DecodesToAdd;
+		return Date;
+	}
+
+	stDate IncreaseDateByOneCentury(stDate Date) {
+		Date.Year += 100;
+		return Date;
+	}
+
+	stDate IncreaseDateByOneMellennium(stDate Date) {
+		Date.Year += 1000;
+		return Date;
+	}
+
+	string DateToString(stDate Date) {
+		return to_string(Date.Day) + '/' + to_string(Date.Month) + '/' + to_string(Date.Year);
+	}
+
+	stDate AddDaysToDate(stDate Date, short DaysToAdd) {
+		short RemainingDays = DaysToAdd + NumberOfDaysFromBeginingYear(Date);
+		Date.Month = 1;
+
+		while (true)
+		{
+			short MonthDays = GetMonthDays(Date.Year, Date.Month);
+
+			if (RemainingDays > MonthDays)
+			{
+				RemainingDays -= MonthDays;
+				Date.Month++;
+
+				if (Date.Month > 12)
+				{
+					Date.Year++;
+					Date.Month = 1;
+				}
+
+			}
+			else
+			{
+				Date.Day = RemainingDays;
+				break;
+			}
+		}
+
+		return Date;
+	}
+
 	stDate GetLocalDate() {
 		time_t Time = time(0);
 		tm* LocalTime = localtime(&Time);
@@ -130,36 +285,6 @@ namespace MyDateUtilsLib {
 		}
 
 		return NumberOfDays += Date.Day;
-	}
-
-	stDate AddDaysToDate(stDate Date, short DaysToAdd) {
-		short RemainingDays = DaysToAdd + NumberOfDaysFromBeginingYear(Date);
-		Date.Month = 1;
-
-		while (true)
-		{
-			short MonthDays = GetMonthDays(Date.Year, Date.Month);
-
-			if (RemainingDays > MonthDays)
-			{
-				RemainingDays -= MonthDays;
-				Date.Month++;
-
-				if (Date.Month > 12)
-				{
-					Date.Year++;
-					Date.Month = 1;
-				}
-
-			}
-			else
-			{
-				Date.Day = RemainingDays;
-				break;
-			}
-		}
-
-		return Date;
 	}
 
 }
