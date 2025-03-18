@@ -1,9 +1,9 @@
 #pragma once
 
+#include "..\MyLibrary\StructGroup.h"
+#include "MyValidationLib.h"
 #include <iostream>
 #include <string>
-#include "MyValidationLib.h"
-#include "..\MyLibrary\StructGroup.cpp"
 
 using namespace std;
 

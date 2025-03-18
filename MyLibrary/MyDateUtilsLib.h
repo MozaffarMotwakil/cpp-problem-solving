@@ -1,9 +1,9 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
 
+#include "..\MyLibrary\StructGroup.h"
 #include <string>
 #include <ctime>
-#include "..\MyLibrary\StructGroup.cpp"
 
 using namespace std;
 
