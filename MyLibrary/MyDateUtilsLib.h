@@ -361,6 +361,14 @@ namespace MyDateUtilsLib {
 		return Date1.Day < Date2.Day;
 	}
 
+	bool IsDate1EqualDate2(stDate Date1, stDate Date2) {
+		return (Date1.Year == Date2.Year && Date1.Month == Date2.Month && Date1.Day == Date2.Day);
+	}
+
+	bool IsDate1AfterDate2(stDate Date1, stDate Date2) {
+		return (!IsDate1BeforeDate2(Date1, Date2) && !IsDate1EqualDate2(Date1, Date2));
+	}
+
 	short DiffirentBetweenTwoDates(stDate Date1, stDate Date2, bool InclodingEndDay = false) {
 		short Days = 0;
 
