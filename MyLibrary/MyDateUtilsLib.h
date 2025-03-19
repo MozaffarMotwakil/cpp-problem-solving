@@ -493,4 +493,8 @@ namespace MyDateUtilsLib {
 		return !(MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.EndDate, FirstPeriod.StartDate) == -1 || MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.StartDate, FirstPeriod.EndDate) == 1);
 	}
 
+	short PeriodLength(stPeriod Period, bool IncludeEndDay = false) {
+		return DiffirentBetweenTwoDates(Period.StartDate, Period.EndDate, IncludeEndDay);
+	}
+
 }

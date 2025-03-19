@@ -86,4 +86,16 @@ namespace MyInputLib {
 		return Date;
 	}
 
+	stPeriod ReadPeriod() {
+		stPeriod Period;
+
+		cout << "Enter start date :\n";
+		Period.StartDate = MyInputLib::ReadDate();
+
+		cout << "\nEnter end date :\n";
+		Period.EndDate = MyInputLib::ReadDate();
+
+		return Period;
+	}
+
 }

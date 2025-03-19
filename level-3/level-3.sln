@@ -57,6 +57,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex57-CompareBetweenDate1And
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex58-IsOverlapPeriod", "Ex58-IsOverlapPeriod\Ex58-IsOverlapPeriod.vcxproj", "{2EECD5CE-0F47-4EDA-8AD0-6BDAA7E85378}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ex59-PeriodLengthInDays", "Ex59-PeriodLengthInDays\Ex59-PeriodLengthInDays.vcxproj", "{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -281,6 +283,14 @@ Global
 		{2EECD5CE-0F47-4EDA-8AD0-6BDAA7E85378}.Release|x64.Build.0 = Release|x64
 		{2EECD5CE-0F47-4EDA-8AD0-6BDAA7E85378}.Release|x86.ActiveCfg = Release|Win32
 		{2EECD5CE-0F47-4EDA-8AD0-6BDAA7E85378}.Release|x86.Build.0 = Release|Win32
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Debug|x64.ActiveCfg = Debug|x64
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Debug|x64.Build.0 = Debug|x64
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Debug|x86.ActiveCfg = Debug|Win32
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Debug|x86.Build.0 = Debug|Win32
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Release|x64.ActiveCfg = Release|x64
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Release|x64.Build.0 = Release|x64
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Release|x86.ActiveCfg = Release|Win32
+		{07ACDC05-57D2-4236-8C43-029DDAB1CF2A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
