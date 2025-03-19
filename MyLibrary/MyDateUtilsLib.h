@@ -2,8 +2,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "..\MyLibrary\StructGroup.h"
+#include "..\MyLibrary\MyTextUtilsLib.h"
 #include <string>
 #include <ctime>
+#include <vector>
 
 using namespace std;
 
@@ -520,6 +522,21 @@ namespace MyDateUtilsLib {
 		}
 
 		return 0;
+	}
+
+	bool IsValidDate(stDate Date) {
+		return !(Date.Month < 1 || Date.Month > 12 || Date.Day < 1 || Date.Day > GetMonthDays(Date));
+	}
+
+	stDate StringToDate(string DateInString) {
+		vector<string> vDate = MyTextUtilsLib::Split(DateInString, "/");
+
+		stDate Date;
+		Date.Day = stoi(vDate[0]);
+		Date.Month = stoi(vDate[1]);
+		Date.Year = stoi(vDate[2]);
+
+		return Date;
 	}
 
 }
