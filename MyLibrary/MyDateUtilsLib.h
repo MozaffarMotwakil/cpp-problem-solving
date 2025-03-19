@@ -511,12 +511,12 @@ namespace MyDateUtilsLib {
 	}
 
 	short CountOverlapDays(stPeriod FirstPeriod, stPeriod SecondPeriod) {
-		if (MyDateUtilsLib::IsOverlapPeriods(FirstPeriod, SecondPeriod))
+		if (IsOverlapPeriods(FirstPeriod, SecondPeriod))
 		{
 			stPeriod NewPeriod;
 			NewPeriod.StartDate = MyDateUtilsLib::GetLargestDate(FirstPeriod.StartDate, SecondPeriod.StartDate);
 			NewPeriod.EndDate = MyDateUtilsLib::GetSmallestDate(FirstPeriod.EndDate, SecondPeriod.EndDate);
-			return MyDateUtilsLib::PeriodLength(NewPeriod);
+			return PeriodLength(NewPeriod);
 		}
 
 		return 0;
