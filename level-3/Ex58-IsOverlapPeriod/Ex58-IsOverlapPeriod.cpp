@@ -11,7 +11,7 @@ struct stPeriod {
 
 // First Way //
 
-bool IsOverlapPeriods(stPeriod FirstPeriod, stPeriod SecondPeriod) {
+bool IsOverlapPeriod(stPeriod FirstPeriod, stPeriod SecondPeriod) {
     if (MyDateUtilsLib::IsDate1EqualDate2(FirstPeriod.StartDate, SecondPeriod.StartDate) || MyDateUtilsLib::IsDate1EqualDate2(FirstPeriod.StartDate, SecondPeriod.EndDate))
         return true;
     else if (MyDateUtilsLib::IsDate1AfterDate2(FirstPeriod.StartDate, SecondPeriod.StartDate) && MyDateUtilsLib::IsDate1BeforeDate2(FirstPeriod.StartDate, SecondPeriod.EndDate))
@@ -37,6 +37,23 @@ bool ArePeriodsOverlap(stPeriod FirstPeriod, stPeriod SecondPeriod) {
     return (IsDateOverlapWithPeriod(FirstPeriod.StartDate, SecondPeriod) || IsDateOverlapWithPeriod(FirstPeriod.EndDate, SecondPeriod));
 }
 
+// Mentor solution //
+
+bool IsOverlapPeriods(stPeriod FirstPeriod, stPeriod SecondPeriod) {
+    if (MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.EndDate, FirstPeriod.StartDate) == -1 || MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.StartDate, FirstPeriod.EndDate) == 1)
+        return false;
+    else
+        return true;
+}
+
+
+// Update of Mentor solution //
+
+bool IsOverlapPeriods(stPeriod FirstPeriod, stPeriod SecondPeriod) {
+    return !(MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.EndDate, FirstPeriod.StartDate) == -1 || MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.StartDate, FirstPeriod.EndDate) == 1);
+}
+
+
 stPeriod ReadPeriod() {
     stPeriod Period;
 
@@ -57,7 +74,7 @@ int main()
     cout << "\n\nEnter the second period :\n";
     stPeriod SecondPeriod = ReadPeriod();
 
-    if (ArePeriodsOverlap(FirstPeriod, SecondPeriod))
+    if (IsOverlapPeriods(FirstPeriod, SecondPeriod))
         cout << "\nYes, periods is overlap\n";
     else
         cout << "\nNo, periods is NOT overlap\n";

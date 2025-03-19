@@ -5,3 +5,8 @@ struct stDate {
 	short unsigned Month;
 	short unsigned Day;
 };
+
+struct stPeriod {
+	stDate StartDate;
+	stDate EndDate;
+};

@@ -489,4 +489,8 @@ namespace MyDateUtilsLib {
 		return enDateCompare::After;
 	}
 
+	bool IsOverlapPeriods(stPeriod FirstPeriod, stPeriod SecondPeriod) {
+		return !(MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.EndDate, FirstPeriod.StartDate) == -1 || MyDateUtilsLib::CompareBetweenTwoDates(SecondPeriod.StartDate, FirstPeriod.EndDate) == 1);
+	}
+
 }
