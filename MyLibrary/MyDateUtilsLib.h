@@ -371,7 +371,7 @@ namespace MyDateUtilsLib {
 		return (!IsDate1BeforeDate2(Date1, Date2) && !IsDate1EqualDate2(Date1, Date2));
 	}
 
-	short DiffirentBetweenTwoDates(stDate Date1, stDate Date2, bool InclodingEndDay = false) {
+	short DifferenceBetweenTwoDates(stDate Date1, stDate Date2, bool InclodingEndDay = false) {
 		short Days = 0;
 
 		if (IsDate1BeforeDate2(Date1, Date2))
