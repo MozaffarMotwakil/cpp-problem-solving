@@ -494,11 +494,32 @@ namespace MyDateUtilsLib {
 	}
 
 	short PeriodLength(stPeriod Period, bool IncludeEndDay = false) {
-		return DiffirentBetweenTwoDates(Period.StartDate, Period.EndDate, IncludeEndDay);
+		return DifferenceBetweenTwoDates(Period.StartDate, Period.EndDate, IncludeEndDay);
 	}
 
 	bool IsDateWithinPeriod(stDate Date, stPeriod Period) {
 		return !(CompareBetweenTwoDates(Date, Period.StartDate) == -1 || CompareBetweenTwoDates(Date, Period.EndDate) == 1);
+	}
+
+
+	stDate GetLargestDate(stDate FirstDate, stDate SecondDate) {
+		return (MyDateUtilsLib::CompareBetweenTwoDates(FirstDate, SecondDate) == 1 ? FirstDate : SecondDate);
+	}
+
+	stDate GetSmallestDate(stDate FirstDate, stDate SecondDate) {
+		return (MyDateUtilsLib::CompareBetweenTwoDates(FirstDate, SecondDate) == -1 ? SecondDate : FirstDate);
+	}
+
+	short CountOverlapDays(stPeriod FirstPeriod, stPeriod SecondPeriod) {
+		if (MyDateUtilsLib::IsOverlapPeriods(FirstPeriod, SecondPeriod))
+		{
+			stPeriod NewPeriod;
+			NewPeriod.StartDate = MyDateUtilsLib::GetLargestDate(FirstPeriod.StartDate, SecondPeriod.StartDate);
+			NewPeriod.EndDate = MyDateUtilsLib::GetSmallestDate(FirstPeriod.EndDate, SecondPeriod.EndDate);
+			return MyDateUtilsLib::PeriodLength(NewPeriod);
+		}
+
+		return 0;
 	}
 
 }

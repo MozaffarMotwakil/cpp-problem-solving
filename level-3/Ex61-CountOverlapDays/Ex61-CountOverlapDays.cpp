@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// First way //
+
 short CountOverlapDays(stPeriod FirstPeriod, stPeriod SecondPeriod) {
     short DaysCount = 0;
 
@@ -16,17 +18,39 @@ short CountOverlapDays(stPeriod FirstPeriod, stPeriod SecondPeriod) {
 		{
 			DaysCount = MyDateUtilsLib::PeriodLength(SecondPeriod);
 		}
-		else if (CompareStartDate)
+		else if (StartInsideFirst)
 		{
-			DaysCount = MyDateUtilsLib::DiffirentBetweenTwoDates(SecondPeriod.StartDate, FirstPeriod.EndDate);
+			DaysCount = MyDateUtilsLib::DifferenceBetweenTwoDates(SecondPeriod.StartDate, FirstPeriod.EndDate);
 		}
 		else
 		{
-			DaysCount = MyDateUtilsLib::DiffirentBetweenTwoDates(FirstPeriod.StartDate, SecondPeriod.EndDate);
+			DaysCount = MyDateUtilsLib::DifferenceBetweenTwoDates(FirstPeriod.StartDate, SecondPeriod.EndDate);
 		}
 	}
 
 	return DaysCount;
+}
+
+// Second way //
+
+stDate GetLargestDate(stDate FirstDate, stDate SecondDate) {
+	return (MyDateUtilsLib::CompareBetweenTwoDates(FirstDate, SecondDate) == 1 ? FirstDate : SecondDate);
+}
+
+stDate GetSmallestDate(stDate FirstDate, stDate SecondDate) {
+	return (MyDateUtilsLib::CompareBetweenTwoDates(FirstDate, SecondDate) == -1 ? SecondDate : FirstDate);
+}
+
+short OverlapDays(stPeriod FirstPeriod, stPeriod SecondPeriod) {
+	if (MyDateUtilsLib::IsOverlapPeriods(FirstPeriod, SecondPeriod))
+	{
+		stPeriod NewPeriod;
+		NewPeriod.StartDate = GetLargestDate(FirstPeriod.StartDate, SecondPeriod.StartDate);
+		NewPeriod.EndDate = GetSmallestDate(FirstPeriod.EndDate, SecondPeriod.EndDate);
+		return MyDateUtilsLib::PeriodLength(NewPeriod);
+	}
+
+	return 0;
 }
 
 int main()
@@ -37,7 +61,7 @@ int main()
 	cout << "\n\nEnter the second period :\n";
 	stPeriod SecondPeriod = MyInputLib::ReadPeriod();
 
-	cout << "\nOverlap period count : " << CountOverlapDays(FirstPeriod, SecondPeriod) << endl;
+	cout << "\nOverlap period count : " << OverlapDays(FirstPeriod, SecondPeriod) << endl;
 
 	return 0;
 }
