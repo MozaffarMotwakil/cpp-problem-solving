@@ -539,4 +539,12 @@ namespace MyDateUtilsLib {
 		return Date;
 	}
 
+	string FormatDate(stDate Date, string DateFormat = "dd/mm/yyyy") {
+		DateFormat = MyTextUtilsLib::Replce(DateFormat, "dd", to_string(Date.Day));
+		DateFormat = MyTextUtilsLib::Replce(DateFormat, "mm", to_string(Date.Month));
+		DateFormat = MyTextUtilsLib::Replce(DateFormat, "yyyy", to_string(Date.Year));
+
+		return DateFormat;
+	}
+
 }

@@ -67,5 +67,16 @@ namespace MyTextUtilsLib {
 		return vTextParts;
 	}
 
+	string Replce(string Text, string OrginalPartInText, string NewPartInText) {
+		short Position = 0;
+
+		if ((Position = Text.find(OrginalPartInText)) != string::npos)
+		{
+			Text.erase(Position, OrginalPartInText.length());
+			Text.insert(Position, NewPartInText);
+		}
+
+		return Text;
+	}
 
 }
