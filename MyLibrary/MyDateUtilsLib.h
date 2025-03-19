@@ -497,4 +497,8 @@ namespace MyDateUtilsLib {
 		return DiffirentBetweenTwoDates(Period.StartDate, Period.EndDate, IncludeEndDay);
 	}
 
+	bool IsDateWithinPeriod(stDate Date, stPeriod Period) {
+		return !(CompareBetweenTwoDates(Date, Period.StartDate) == -1 || CompareBetweenTwoDates(Date, Period.EndDate) == 1);
+	}
+
 }
