@@ -28,5 +28,18 @@ int main()
 	else
 		cout << "No Is Not Empty" << endl;
 
+	doublyLinkedList.Clear();
+
+	cout << "List's Elements: ";
+	doublyLinkedList.PrintList();
+
+	cout << "Size: " << doublyLinkedList.Size() << endl;
+
+	if (doublyLinkedList.IsEmpty())
+		cout << "Yes Is Empty" << endl;
+	else
+		cout << "No Is Not Empty" << endl;
+
+
 	return 0;
 }

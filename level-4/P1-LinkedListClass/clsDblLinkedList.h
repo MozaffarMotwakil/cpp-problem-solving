@@ -131,6 +131,12 @@ public:
 		return _size == 0;
 	}
 
+	void Clear() {
+		while (_size > 0) {
+			DeleteFirstNode();
+		}
+	}
+
 	void PrintList() {
 		Node* current = head;
 
