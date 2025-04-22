@@ -20,6 +20,8 @@ public:
 			head->prev = newNode;
 
 		head = newNode;
+
+		_size++;
 	}
 
 	bool InsertAfter(Node* &prevNode, T data) {
@@ -34,6 +36,7 @@ public:
 
 		prevNode->next = newNode;
 
+		_size++;
 		return true;
 	}
 
@@ -50,6 +53,7 @@ public:
 			lastNode->next = newNode;
 		}
 		
+		_size++;
 	}
 
 	bool DeleteNode(Node* node) {
@@ -67,6 +71,7 @@ public:
 
 		delete node;
 
+		_size--;
 		return true;
 	}
 	
@@ -83,6 +88,7 @@ public:
 
 		delete firstNode;
 
+		_size--;
 		return true;
 	}
 
@@ -98,6 +104,8 @@ public:
 			head = nullptr;
 
 		delete lastNode;
+
+		_size--;
 		return true;
 	}
 
@@ -116,16 +124,7 @@ public:
 	}
 
 	int Size() {
-		Node* current = head;
-
-		int size = 0;
-
-		while (current != nullptr) {
-			size++;
-			current = current->next;
-		}
-		
-		return size;
+		return _size;
 	}
 
 
@@ -141,6 +140,8 @@ public:
 	}
 
 private:
+	 int _size;
+
 	 Node* GetLastNode() {
 		if (head == nullptr)
 			return nullptr;
@@ -152,5 +153,4 @@ private:
 
 		return lastNode;
 	}
-
 };
