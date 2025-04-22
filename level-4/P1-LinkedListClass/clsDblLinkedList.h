@@ -127,6 +127,9 @@ public:
 		return _size;
 	}
 
+	bool IsEmpty() {
+		return _size == 0;
+	}
 
 	void PrintList() {
 		Node* current = head;
