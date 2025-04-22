@@ -27,8 +27,8 @@ namespace MyInputLib {
 		return Text;
 	}
 
-	auto ReadNumber(string Message) {
-		auto Number = 0;
+	template<typename T> T ReadNumber(string Message) {
+		T Number = 0;
 
 		cout << Message;
 		cin >> Number;
@@ -46,8 +46,8 @@ namespace MyInputLib {
 		return Number;
 	}
 
-	auto ReadPositiveNumber(string Message) {
-		auto Number = 0;
+	template<typename T> T ReadPositiveNumber(string Message) {
+		T Number = 0;
 
 		do
 		{
@@ -61,8 +61,8 @@ namespace MyInputLib {
 		return Number;
 	}
 
-	auto ReadPositiveNumberInRange(int From, int To, string Message) {
-		auto PositiveNumber = 0;
+	template<typename T> T ReadPositiveNumberInRange(T From, T To, string Message) {
+		T PositiveNumber = 0;
 
 		do
 		{
