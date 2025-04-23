@@ -178,6 +178,11 @@ public:
 		return node != nullptr ? node->data : NULL;
 	}
 
+	bool UpdateItem(int index, T newData) {
+		Node* node = GetNode(index);
+		return node != nullptr ? (node->data = newData) : false;
+	}
+
 	void PrintList() {
 		Node* current = head;
 

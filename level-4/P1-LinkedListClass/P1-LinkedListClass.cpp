@@ -18,14 +18,15 @@ int main()
 
 	cout << "Size: " << doublyLinkedList.Size() << endl;
 	
-	int item = doublyLinkedList.GetItem(4);
-
-	if (item != NULL) {
-		cout << "Node's value is: " << item << endl;
+	if (doublyLinkedList.UpdateItem(4, 100)) {
+		cout << "Update Seccessfuly" << endl;
 	}
 	else {
-		cout << "Don't Found Node" << endl;
+		cout << "Sorray, updata failed" << endl;
 	}
+
+	cout << "List's Elements: ";
+	doublyLinkedList.PrintList();
 
 	return 0;
 }
