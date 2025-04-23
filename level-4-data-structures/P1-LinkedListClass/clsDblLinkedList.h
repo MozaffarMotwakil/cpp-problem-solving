@@ -2,7 +2,7 @@
 
 using namespace std;
 
-template <class T> class clsDblLinkedList {
+template <class T> class clsDoublyLinkedList {
 public:
 	class Node {
 	public:

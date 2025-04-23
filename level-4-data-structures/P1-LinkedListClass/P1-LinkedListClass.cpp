@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	clsDblLinkedList<int> doublyLinkedList;
+	clsDoublyLinkedList<int> doublyLinkedList;
 
 	doublyLinkedList.InsertAtEnd(1);
 	doublyLinkedList.InsertAtEnd(2);
