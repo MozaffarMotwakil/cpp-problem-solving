@@ -7,10 +7,6 @@ int main()
 {
 	clsDblLinkedList<int> doublyLinkedList;
 
-	if (doublyLinkedList.IsEmpty())
-		cout << "Yes Is Empty" << endl;
-	else
-		cout << "No Is Not Empty" << endl;
 	doublyLinkedList.InsertAtEnd(1);
 	doublyLinkedList.InsertAtEnd(2);
 	doublyLinkedList.InsertAtEnd(3);
@@ -18,28 +14,16 @@ int main()
 	doublyLinkedList.InsertAtEnd(5);
 
 	cout << "List's Elements: ";
-	
 	doublyLinkedList.PrintList();
 
 	cout << "Size: " << doublyLinkedList.Size() << endl;
 
-	if (doublyLinkedList.IsEmpty())
-		cout << "Yes Is Empty" << endl;
-	else
-		cout << "No Is Not Empty" << endl;
+	doublyLinkedList.Reveres();
 
-	doublyLinkedList.Clear();
-
-	cout << "List's Elements: ";
+	cout << "List's Elements after reveres: ";
 	doublyLinkedList.PrintList();
 
 	cout << "Size: " << doublyLinkedList.Size() << endl;
-
-	if (doublyLinkedList.IsEmpty())
-		cout << "Yes Is Empty" << endl;
-	else
-		cout << "No Is Not Empty" << endl;
-
 
 	return 0;
 }

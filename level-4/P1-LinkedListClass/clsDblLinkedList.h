@@ -137,6 +137,23 @@ public:
 		}
 	}
 
+	void Reveres() {
+		if (head->next == nullptr)
+			return;
+
+		Node* prevNode = head;
+
+		while (head != nullptr) {
+			prevNode = head->prev;
+			head->prev = head->next;
+			head->next = prevNode;
+
+			head = head->prev;
+		}
+
+		head = prevNode->prev;
+	}
+
 	void PrintList() {
 		Node* current = head;
 
