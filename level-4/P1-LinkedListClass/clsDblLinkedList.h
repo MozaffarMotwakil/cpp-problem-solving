@@ -24,7 +24,7 @@ public:
 		_size++;
 	}
 
-	bool InsertAfter(Node* &prevNode, T data) {
+	bool InsertAfter(Node* prevNode, T data) {
 		if (prevNode == nullptr) 
 			return false;
 
@@ -38,6 +38,10 @@ public:
 
 		_size++;
 		return true;
+	}
+
+	bool InsertAfter(int index, T data) {
+		return InsertAfter(GetNode(index), data);
 	}
 
 	void InsertAtEnd(T data) {

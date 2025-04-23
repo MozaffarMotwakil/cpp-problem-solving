@@ -10,7 +10,6 @@ int main()
 	doublyLinkedList.InsertAtEnd(1);
 	doublyLinkedList.InsertAtEnd(2);
 	doublyLinkedList.InsertAtEnd(3);
-	doublyLinkedList.InsertAtEnd(4);
 	doublyLinkedList.InsertAtEnd(5);
 
 	cout << "List's Elements: ";
@@ -18,13 +17,8 @@ int main()
 
 	cout << "Size: " << doublyLinkedList.Size() << endl;
 	
-	if (doublyLinkedList.UpdateItem(4, 100)) {
-		cout << "Update Seccessfuly" << endl;
-	}
-	else {
-		cout << "Sorray, updata failed" << endl;
-	}
-
+	doublyLinkedList.InsertAfter(2, 4);
+	
 	cout << "List's Elements: ";
 	doublyLinkedList.PrintList();
 
