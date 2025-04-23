@@ -18,10 +18,10 @@ int main()
 
 	cout << "Size: " << doublyLinkedList.Size() << endl;
 	
-	clsDblLinkedList<int>::Node* node = doublyLinkedList.GetNode(3);
+	int item = doublyLinkedList.GetItem(4);
 
-	if (node != nullptr) {
-		cout << "Node's value is: " << node->data << endl;
+	if (item != NULL) {
+		cout << "Node's value is: " << item << endl;
 	}
 	else {
 		cout << "Don't Found Node" << endl;

@@ -173,6 +173,11 @@ public:
 		return nullptr;
 	}
 
+	T GetItem(int index) {
+		Node* node = GetNode(index);
+		return node != nullptr ? node->data : NULL;
+	}
+
 	void PrintList() {
 		Node* current = head;
 
