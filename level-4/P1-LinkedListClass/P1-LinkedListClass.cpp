@@ -17,13 +17,15 @@ int main()
 	doublyLinkedList.PrintList();
 
 	cout << "Size: " << doublyLinkedList.Size() << endl;
+	
+	clsDblLinkedList<int>::Node* node = doublyLinkedList.GetNode(3);
 
-	doublyLinkedList.Reveres();
-
-	cout << "List's Elements after reveres: ";
-	doublyLinkedList.PrintList();
-
-	cout << "Size: " << doublyLinkedList.Size() << endl;
+	if (node != nullptr) {
+		cout << "Node's value is: " << node->data << endl;
+	}
+	else {
+		cout << "Don't Found Node" << endl;
+	}
 
 	return 0;
 }

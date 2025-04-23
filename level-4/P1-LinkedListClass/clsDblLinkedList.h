@@ -154,6 +154,25 @@ public:
 		head = prevNode->prev;
 	}
 
+	Node* GetNode(int index) {
+		if (index < 0 || index >= _size)
+			return nullptr;
+
+		int i = 0;
+		Node* current = head;
+
+		while (current != nullptr) {
+			if (i == index) {
+				return current;
+			}
+
+			i++;
+			current = current->next;
+		}
+
+		return nullptr;
+	}
+
 	void PrintList() {
 		Node* current = head;
 
